@@ -31,7 +31,7 @@
 </head>
 
 <body>
-<div class="container-fluid">
+<div class="container">
     <div class="navbar-header">
       <nav class="nav nav-inline">
         <div class="col-md-8">Logged in as: <?php print($userRow['userName']); ?></div>
