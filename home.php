@@ -14,11 +14,15 @@
 	$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" href="css/bootstrap.css" type="text/css"  />
+<title>Kickbacks - <?php print($userRow['userName']); ?></title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--meta http-equiv="Content-Type" content="text/html; charset=utf-8" /-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="common.css">
 <style>
        #map {
@@ -26,45 +30,64 @@
         width: 100%;
        }
     </style>
-<link rel="stylesheet" href="style.css" type="text/css"  />
-<title>Kickbacks - <?php print($userRow['userName']); ?></title>
+<!--link rel="stylesheet" href="style.css" type="text/css"  /-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-<div class="container-fluid">
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
     <div class="navbar-header">
-      <nav class="nav nav-inline">
-        <div class="col-md-8">Logged in as: <?php print($userRow['userName']); ?></div>
-        <a class="nav-link active" href="home.php">Home</a>
-        <a class="nav-link active" href="profile.php">Profile</a>
-        <a class="nav-link active" href="#">Notifications</a>
-        <a class="nav-link active" href="#">Post</a>
-        <a class="nav-link active" href="logout.php?logout=true">Logout</a>
-      </nav>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group input-group">
-          <input type="text" class="form-control" placeholder="Find Kikbacks">
-          <span class="input-group-btn">
-            <button class="btn btn-secondary" type="button">Go!</button>
-          </span>
+       <a class="navbar-brand" href="#">Kikbacks</a>
+	 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a class="active" href="home.php">Home</a></li>
+        <li><a  href="profile.php">Profile</a></li>
+        <li><a  href="#">Notifications</a></li>
+        <li><a  href="#">Post</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span><?php print($userRow['userName']); ?></a></li>
+        <li><a href="logout.php?logout=true">Logout</a></li>
+      </ul>
     </div>
   </div>
-  <div class="wrapper">
-  <div class="content-main"> <div class="row">
-<div class="col-lg-12">
-<div id="map"></div>
+</nav>
+
+<div class="container">
+<div class"row">
+    <div class="col-lg-12">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div>
+<br>
+<div class="row">
+  <div class="col-lg-12">
+   <div id="map"></div>
   <script>
       // Note: This example requires that you consent to location sharing when
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
   function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+	var map = new google.maps.Map(document.getElementById('map'), {
          center: {lat: 39, lng: -95},
           zoom: 10
         });
-
-          var contentString = '<div id="marker_content">'+
+          
+        var contentString = '<div id="marker_content">'+
             '<div id="siteNotice">'+
             '</div>'+
             '<h1 id="firstHeading" class="firstHeading"><?php print($userRow['userName']); ?></h1>'+
@@ -113,18 +136,21 @@
   <script async defer
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_3S4gqLg1YOMXc1M88LN3SUIzKf8bnOA&callback=initMap">
 </script>
-<div class="content-secondary">Trending Kikbacks</div>
+  </div>
 </div>
-  <div class="row">
-  <div class="col-md-2">.col-md-2</div>
-  <div class="col-md-2">.col-md-2</div>
-  <div class="col-md-2">.col-md-2</div>
-  <div class="col-md-2">.col-md-2</div>
-  <div class="col-md-2">.col-md-2</div>
-  <div class="col-md-2">.col-md-2</div>
+
+<div class="row">
+  <div class="content-secondary">Trending Kikbacks</div>
+  </div>  
+
+<div class="row">
+  <div class="col-md-2"><img src="/if/img1.jpg" class="img-responsive" alt="Responsive image"></div>
+  <div class="col-md-2"><img src="/if/img2.jpg" class="img-responsive" alt="Responsive image"></div>
+  <div class="col-md-2"><img src="/if/img3.jpg" class="img-responsive" alt="Responsive image"></div>
+  <div class="col-md-2"><img src="/if/img4.jpg" class="img-responsive" alt="Responsive image"></div>
+  <div class="col-md-2"><img src="/if/img5.jpg" class="img-responsive" alt="Responsive image"></div>
+  <div class="col-md-2"><img src="/if/img6.jpg" class="img-responsive" alt="Responsive image"></div>
 </div>
-</div>
- 
 </div>
 </body>
 </html>
