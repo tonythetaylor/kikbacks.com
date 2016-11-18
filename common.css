@@ -47,4 +47,7 @@ img.img-circle {
   left:0;
   z-index: -1;
 }
-
+.navbar {
+  border-radius: 0;
+  border: 0;
+}
