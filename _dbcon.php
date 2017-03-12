@@ -4,7 +4,7 @@ session_start();
 
 $DB_host = "";
 $DB_user = "";
-$DB_pass = "*";
+$DB_pass = "";
 $DB_name = "";
 
 try
