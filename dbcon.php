@@ -1,10 +1,10 @@
 <?php
 class Database
 {   
-    private $host = "45.33.93.45";
-    private $db_name = "dblogin";
-    private $username = "taylony";
-    private $password = "*Q3-r0!_LnD";
+    private $host = "";
+    private $db_name = "";
+    private $username = "";
+    private $password = "";
     public $conn;
 
     public function dbConnection()
