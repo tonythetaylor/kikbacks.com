@@ -2,10 +2,10 @@
 
 class Database
 {
-private $DB_Host = "45.33.93.45";
-private $DB_Name = "dblogin";
-private $DB_Username = "taylony";
-private $DB_Password = "*Q3-r0!_LnD";
+private $DB_Host = "";
+private $DB_Name = "";
+private $DB_Username = "";
+private $DB_Password = "";
 
 public $conn;
 
