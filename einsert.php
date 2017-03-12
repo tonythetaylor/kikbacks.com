@@ -2,10 +2,10 @@
 /* Attempt MySQL server connection. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 
-$servername = "45.33.93.45";
-$username = "taylony";
-$password = "*Q3-r0!_LnD";
-$dbname = "dblogin";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 
 if(isset($_POST['btn-event']))
 {
