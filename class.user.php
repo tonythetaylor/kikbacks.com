@@ -21,18 +21,17 @@ class USER
 	}
 	
 	public function register($uname,$umail,$upass)
-	{
-		try
-		{
-			$new_password = password_hash($upass, PASSWORD_DEFAULT);
-			
-			$stmt = $this->conn->prepare("INSERT INTO users(userName,userEmail,userPass) 
-		                                               VALUES(:uname, :umail, :upass)");
-												  
-			$stmt->bindparam(":uname", $uname);
-			$stmt->bindparam(":umail", $umail);
-			$stmt->bindparam(":upass", $new_password);										  
-				
+        {
+                try
+                {
+                        $new_password = password_hash($upass, PASSWORD_DEFAULT);
+
+                        $stmt = $this->conn->prepare("INSERT INTO users(userName,userEmail,userPass) 
+                                                               VALUES(:uname, :umail, :upass)");
+
+                        $stmt->bindparam(":uname", $uname);
+                        $stmt->bindparam(":umail", $umail);
+                        $stmt->bindparam(":upass", $new_password);
 			$stmt->execute();	
 			
 			return $stmt;	

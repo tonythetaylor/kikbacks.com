@@ -5,56 +5,58 @@ $user = new USER();
 
 if($user->is_loggedin()!="")
 {
-	$user->redirect('home.php');
+    $user->redirect('home.php');
 }
 
 if(isset($_POST['btn-signup']))
 {
-	$uname = strip_tags($_POST['txt_uname']);
-	$umail = strip_tags($_POST['txt_umail']);
-	$upass = strip_tags($_POST['txt_upass']);	
-	
-	if($uname=="")	{
-		$error[] = "provide username !";	
-	}
-	else if($umail=="")	{
-		$error[] = "provide email id !";	
-	}
-	else if(!filter_var($umail, FILTER_VALIDATE_EMAIL))	{
-	    $error[] = 'Please enter a valid email address !';
-	}
-	else if($upass=="")	{
-		$error[] = "provide password !";
-	}
-	else if(strlen($upass) < 6){
-		$error[] = "Password must be atleast 6 characters";	
-	}
-	else
-	{
-		try
-		{
-			$stmt = $user->runQuery("SELECT userName, userEmail FROM users WHERE userName=:uname OR userEmail=:umail");
-			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
-			$row=$stmt->fetch(PDO::FETCH_ASSOC);
-				
-			if($row['userName']==$uname) {
-				$error[] = "sorry username already taken !";
-			}
-			else if($row['userEmail']==$umail) {
-				$error[] = "sorry email id already taken !";
-			}
-			else
-			{
-				if($user->register($uname,$umail,$upass)){	
-					$user->redirect('sign-up.php?joined');
-				}
-			}
-		}
-		catch(PDOException $e)
-		{
-			echo $e->getMessage();
-		}
-	}	
+   $uname = trim($_POST['txt_uname']);
+   $umail = trim($_POST['txt_umail']);
+   $upass = trim($_POST['txt_upass']); 
+   $upass = password_hash($upass, PASSWORD_DEFAULT);
+   
+   if($uname=="") {
+      $error[] = "provide username !"; 
+   }
+   else if($umail=="") {
+      $error[] = "provide email id !"; 
+   }
+   else if(!filter_var($umail, FILTER_VALIDATE_EMAIL)) {
+      $error[] = 'Please enter a valid email address !';
+   }
+   else if($upass=="") {
+      $error[] = "provide password !";
+   }
+   else if(strlen($upass) < 6){
+      $error[] = "Password must be atleast 6 characters"; 
+   }
+   else
+   {
+      try
+      {
+         $stmt = $DB_con->prepare("SELECT userName,userEmail FROM users WHERE userName=:uname OR userEmail=:umail");
+         $stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
+         $row=$stmt->fetch(PDO::FETCH_ASSOC);
+    
+         if($row['userName']==$uname) {
+            $error[] = "sorry username already taken !";
+         }
+         else if($row['userEmail']==$umail) {
+            $error[] = "sorry email id already taken !";
+         }
+         else
+         {
+            if($user->register($uname,$umail,$upass)) 
+            {
+                $user->redirect('sign-up.php?joined');
+            }
+         }
+     }
+     catch(PDOException $e)
+     {
+        echo $e->getMessage();
+     }
+  } 
 }
 
 ?>
@@ -62,7 +64,7 @@ if(isset($_POST['btn-signup']))
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Sign up : Kikbacks</title>
+<title>Sign up : cleartuts</title>
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"  />
 <link rel="stylesheet" href="style.css" type="text/css"  />
 </head>
@@ -92,9 +94,6 @@ if(isset($_POST['btn-signup']))
                  <?php
             }
             ?>
-            <!--div class="form-group">
-            <input type="file" class="form-control" name="target_file" placeholder="Upload Image" />
-            </div--!>
             <div class="form-group">
             <input type="text" class="form-control" name="txt_uname" placeholder="Enter Username" value="<?php if(isset($error)){echo $uname;}?>" />
             </div>

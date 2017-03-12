@@ -18,7 +18,7 @@ li {
 
 li a {
     display: block;
-    color: white;
+    color: black;
     text-align: center;
     padding: 0px 60px;
     text-decoration: none;
@@ -47,7 +47,13 @@ img.img-circle {
   left:0;
   z-index: -1;
 }
-.navbar {
-  border-radius: 0;
-  border: 0;
+.navbar-toggle {
+background-color: #337ab7;
+}
+.form-control {
+border: none;
+}
+.btn-default {
+    background-color: #337ab7;
+    color: #fff;
 }
