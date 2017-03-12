@@ -2,10 +2,10 @@
 
 session_start();
 
-$DB_host = "45.33.93.45";
-$DB_user = "taylony";
-$DB_pass = "*Q3-r0!_LnD";
-$DB_name = "dblogin";
+$DB_host = "";
+$DB_user = "";
+$DB_pass = "*";
+$DB_name = "";
 
 try
 {
