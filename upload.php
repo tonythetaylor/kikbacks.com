@@ -3,10 +3,10 @@
         require_once("class.user.php");
         $auth_user = new USER();
         $user_id = $_SESSION['user_session'];
-$servername = "45.33.93.45";
-$username = "taylony";
-$password = "*Q3-r0!_LnD";
-$dbname = "dblogin";
+$servername = "";
+$username = "";
+$password = "";
+$dbname = "";
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
